@@ -18,6 +18,11 @@ import java.util.Set;
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 
+// ****************** new code ************************
+import java.util.ArrayList;
+// ****************** end new code ************************
+
+
 /**
  *
  * @author arash
@@ -32,7 +37,16 @@ public class Prefs {
     private static final String PREFERENCE_DATABASE_VERSION = "DatabaseVersion";
     private static final String PREFERENCE_PRAYER_TEXT_SCALAR = "PrayerTextScalar";
     private static final String PREFERENCE_USE_CLASSIC_THEME = "UseClassicTheme";
-    
+
+    // ****************** new code ************************
+    private static final String PREFERENCE_SPEAK_PRAYER_ON_OPEN = "speak_prayer_on_open";
+    private static final String PREFERENCE_SPEECH_RATE = "speech_rate";
+    private static final String PREFERENCE_SPEECH_PITCH = "speech_pitch";
+    private static final float DEFAULT_SPEECH_RATE = 1.0f;
+    private static final float DEFAULT_SPEECH_PITCH = 1.0f;
+    // ****************** end new code ************************
+
+
     private Prefs(@NonNull Context ctx) {
         mPrefs = ctx.getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
     }
@@ -138,4 +152,42 @@ public class Prefs {
     }
 
     //endregion
+
+
+    // ****************** new code ************************
+
+    public String getLanguage() {
+        Language[] enabled = getEnabledLanguages();
+        if (enabled.length != 0 && !enabled[0].code.isEmpty()) {
+            return enabled[0].code;
+        }
+        return Language.English.code;
+    }
+
+    public void setSpeechRate(float rate) {
+        mPrefs.edit().putFloat(PREFERENCE_SPEECH_RATE, rate).apply();
+    }
+
+    public float getSpeechRate() {
+        return mPrefs.getFloat(PREFERENCE_SPEECH_RATE, DEFAULT_SPEECH_RATE);
+    }
+
+    public void setSpeechPitch(float pitch) {
+        mPrefs.edit().putFloat(PREFERENCE_SPEECH_PITCH, pitch).apply();
+    }
+
+    public float getSpeechPitch() {
+        return mPrefs.getFloat(PREFERENCE_SPEECH_PITCH, DEFAULT_SPEECH_PITCH);
+    }
+
+    public boolean getSpeakPrayerOnOpen() {
+        return mPrefs.getBoolean(PREFERENCE_SPEAK_PRAYER_ON_OPEN, false);
+    }
+
+    public void setSpeakPrayerOnOpen(boolean value) {
+        mPrefs.edit().putBoolean(PREFERENCE_SPEAK_PRAYER_ON_OPEN, value).apply();
+    }
+
+    // ****************** end new code ************************
+
 }
