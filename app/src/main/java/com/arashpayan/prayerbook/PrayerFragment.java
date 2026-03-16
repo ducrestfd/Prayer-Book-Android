@@ -43,6 +43,7 @@ import java.util.Locale;
 //  ************************** new code ************************
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.speech.tts.Voice;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.ImageButton;
@@ -195,6 +196,19 @@ public class PrayerFragment extends Fragment implements UserDB.Listener, MenuPro
             if (tts != null) {
                 tts.setSpeechRate(Prefs.get().getSpeechRate());
                 tts.setPitch(Prefs.get().getSpeechPitch());
+                String voiceName = Prefs.get().getSpeechVoice();
+                if (voiceName != null) {
+                    try {
+                        for (Voice voice : tts.getVoices()) {
+                            if (voice.getName().equals(voiceName)) {
+                                tts.setVoice(voice);
+                                break;
+                            }
+                        }
+                    } catch (Exception e) {
+                        Log.e("TTS_BookViewer", "Error setting voice", e);
+                    }
+                }
             }
 
             String prayerText = prayer.text;

@@ -18,18 +18,18 @@ public class L {
     }
     
     public static void d(String msg) {
-        Log.d(TAG, msg);
+        // Log.d(TAG, msg);
     }
     
     public static void w(String msg) {
-        Log.w(TAG, msg);
+        // Log.w(TAG, msg);
     }
     
     public static void w(String msg, Throwable t) {
-        Log.w(TAG, msg, t);
+        // Log.w(TAG, msg, t);
     }
     
     public static void e(String msg, Throwable t) {
-        Log.e(TAG, msg, t);
+        //Log.e(TAG, msg, t);
     }
 }

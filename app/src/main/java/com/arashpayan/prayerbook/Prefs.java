@@ -42,6 +42,7 @@ public class Prefs {
     private static final String PREFERENCE_SPEAK_PRAYER_ON_OPEN = "speak_prayer_on_open";
     private static final String PREFERENCE_SPEECH_RATE = "speech_rate";
     private static final String PREFERENCE_SPEECH_PITCH = "speech_pitch";
+    private static final String PREFERENCE_SPEECH_VOICE = "speech_voice";
     private static final float DEFAULT_SPEECH_RATE = 1.0f;
     private static final float DEFAULT_SPEECH_PITCH = 1.0f;
     // ****************** end new code ************************
@@ -178,6 +179,14 @@ public class Prefs {
 
     public float getSpeechPitch() {
         return mPrefs.getFloat(PREFERENCE_SPEECH_PITCH, DEFAULT_SPEECH_PITCH);
+    }
+
+    public void setSpeechVoice(String voiceName) {
+        mPrefs.edit().putString(PREFERENCE_SPEECH_VOICE, voiceName).apply();
+    }
+
+    public String getSpeechVoice() {
+        return mPrefs.getString(PREFERENCE_SPEECH_VOICE, null);
     }
 
     public boolean getSpeakPrayerOnOpen() {
