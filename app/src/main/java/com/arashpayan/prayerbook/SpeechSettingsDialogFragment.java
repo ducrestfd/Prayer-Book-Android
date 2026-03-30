@@ -23,7 +23,16 @@ import java.util.Locale;
 public class SpeechSettingsDialogFragment extends DialogFragment {
 
     public static final String TAG = "SpeechSettingsDialog";
+    private static final String ARG_LANGUAGE_CODE = "language_code";
     private TextToSpeech tts;
+
+    public static SpeechSettingsDialogFragment newInstance(String languageCode) {
+        SpeechSettingsDialogFragment fragment = new SpeechSettingsDialogFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_LANGUAGE_CODE, languageCode);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @NonNull
     @Override
@@ -66,10 +75,13 @@ public class SpeechSettingsDialogFragment extends DialogFragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         voiceSpinner.setAdapter(adapter);
 
+        String argLanguageCode = getArguments() != null ? getArguments().getString(ARG_LANGUAGE_CODE) : null;
+        final String languageCode = argLanguageCode != null ? argLanguageCode : prefs.getLanguage();
+        final Language language = Language.get(languageCode);
+
         tts = new TextToSpeech(requireContext(), status -> {
             if (status == TextToSpeech.SUCCESS) {
-                String languageCode = prefs.getLanguage();
-                Locale locale = new Locale(languageCode);
+                Locale locale = language.locale;
                 String currentVoiceName = prefs.getSpeechVoice();
 
                 voiceNames.clear();
@@ -103,7 +115,7 @@ public class SpeechSettingsDialogFragment extends DialogFragment {
         });
 
         return new AlertDialog.Builder(requireContext())
-                .setTitle(R.string.speech_settings)
+                .setTitle(getString(R.string.speech_settings) + " (" + getString(language.humanName) + ")")
                 .setView(view)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
                     // Save the final values when the user clicks OK

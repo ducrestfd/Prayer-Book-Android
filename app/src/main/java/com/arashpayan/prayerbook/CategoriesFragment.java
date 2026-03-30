@@ -188,7 +188,7 @@ public class CategoriesFragment extends Fragment implements CategoriesAdapter.On
             return true;
         }
         else if (item.getItemId() == R.id.action_speech_settings) {
-            SpeechSettingsDialogFragment dialog = new SpeechSettingsDialogFragment();
+            SpeechSettingsDialogFragment dialog = SpeechSettingsDialogFragment.newInstance(Prefs.get().getLanguage());
             dialog.show(getParentFragmentManager(), "speech_settings");
             return true;
         }

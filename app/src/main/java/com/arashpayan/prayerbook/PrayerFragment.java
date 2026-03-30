@@ -674,7 +674,7 @@ public class PrayerFragment extends Fragment implements UserDB.Listener, MenuPro
 
         //  ************************** new code ************************
         else if (itemId == R.id.action_speech_settings) {
-            new SpeechSettingsDialogFragment().show(getParentFragmentManager(), SpeechSettingsDialogFragment.TAG);
+            SpeechSettingsDialogFragment.newInstance(prayer.language.code).show(getParentFragmentManager(), SpeechSettingsDialogFragment.TAG);
             return true;
         }
         //  ************************** new code ************************
