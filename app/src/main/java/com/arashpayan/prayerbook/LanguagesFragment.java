@@ -63,15 +63,23 @@ public class LanguagesFragment extends Fragment implements MenuProvider {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            toolbar.addMenuProvider(this, getViewLifecycleOwner());
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
 
         Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
         if (toolbar != null) {
-            toolbar.getMenu().clear();
             toolbar.setTitle(getString(R.string.languages));
             toolbar.setNavigationIcon(null);
-            toolbar.addMenuProvider(this, getViewLifecycleOwner());
         }
     }
 

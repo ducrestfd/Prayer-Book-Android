@@ -448,7 +448,7 @@ public class PrayerFragment extends Fragment implements UserDB.Listener, MenuPro
             }
         });
 
-        toolbar.addMenuProvider(this);
+        toolbar.addMenuProvider(this, getViewLifecycleOwner());
     }
 //  ************************** end new code ************************
 
