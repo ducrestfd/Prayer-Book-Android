@@ -142,7 +142,7 @@ public class Prefs {
             try {
                 l.onEnabledLanguagesChanged();
             } catch (Throwable t) {
-                L.w("Error notifying listener", t);
+                //L.w("Error notifying listener", t);
             }
         }
     }

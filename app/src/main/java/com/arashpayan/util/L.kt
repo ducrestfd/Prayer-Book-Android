@@ -2,34 +2,34 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.arashpayan.util;
+package com.arashpayan.util
 
-import android.util.Log;
+import android.util.Log
 
 /**
- *
+ * 
  * @author arash
  */
-public class L {
-    private static final String TAG = "PrayerBook";
-    
-    public static void i(String msg) {
-        Log.i(TAG, msg);
+object L {
+    private const val TAG = "PrayerBook"
+
+    fun i(msg: String) {
+        Log.i(TAG, msg)
     }
-    
-    public static void d(String msg) {
+
+    fun d(msg: String?) {
         // Log.d(TAG, msg);
     }
-    
-    public static void w(String msg) {
+
+    fun w(msg: String?) {
         // Log.w(TAG, msg);
     }
-    
-    public static void w(String msg, Throwable t) {
+
+    fun w(msg: String?, t: Throwable?) {
         // Log.w(TAG, msg, t);
     }
-    
-    public static void e(String msg, Throwable t) {
+
+    fun e(msg: String?, t: Throwable?) {
         //Log.e(TAG, msg, t);
     }
 }

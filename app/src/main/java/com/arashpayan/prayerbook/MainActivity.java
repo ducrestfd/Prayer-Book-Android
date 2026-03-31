@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             }
             toShow = fm.findFragmentByTag(tag);
             if (toShow != null) {
-                L.i("showing " + tag);
+                //L.i("showing " + tag);
                 FragmentTransaction ft = fm.beginTransaction().attach(toShow).setPrimaryNavigationFragment(toShow);
                 if (fm.getPrimaryNavigationFragment() != null) {
                     ft.detach(fm.getPrimaryNavigationFragment());
