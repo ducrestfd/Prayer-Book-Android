@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import androidx.fragment.app.DialogFragment;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -114,7 +114,7 @@ public class SpeechSettingsDialogFragment extends DialogFragment {
             }
         });
 
-        return new AlertDialog.Builder(requireContext())
+        return new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(getString(R.string.speech_settings) + " (" + getString(language.humanName) + ")")
                 .setView(view)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
